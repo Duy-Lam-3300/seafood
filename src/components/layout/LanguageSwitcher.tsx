@@ -18,7 +18,7 @@ export default function LanguageSwitcher() {
         <form action={async (formData) => {
             await changeLocale(formData.get("locale") as string);
         }}>
-            <select className="border-2 px-1 py-1 border-gray-300 focus-within:border-blue-500 active:border-blue-500 rounded-sm w-[7.8rem]" name="locale" defaultValue={defaultLocale} value={selectedLocale} onChange={(e) => e.currentTarget.form?.requestSubmit()}>
+            <select className="border-2 px-1 py-1 border-gray-300 focus-within:border-blue-500 active:border-blue-500 rounded-sm w-[7.8rem]" name="locale"  value={selectedLocale} onChange={(e) => e.currentTarget.form?.requestSubmit()}>
                 {supportingLocale?.map(item => (
                     <option value={item.dataName} key={item.dataName}>
                         {item.name}</option>

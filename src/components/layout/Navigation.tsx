@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MdDehaze, MdOutlineSearch } from "react-icons/md";
-import Input from "../shared/InputBox";
+import Input from "./SearchBox";
 import { useTranslations } from "next-intl";
-import LanguageSwitcher from "../shared/LanguageSwitcher";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Navigation() {
     const t = useTranslations('Navigation');
@@ -34,7 +34,9 @@ export default function Navigation() {
                 </div>
                 <div className="w-fit flex gap-10 items-center">
                     <LanguageSwitcher />
-                    <Input />
+                    <Input actionPath="/products"
+                        dataQuery="name"
+                        defaultValue="" />
                 </div>
             </div>
             <div className="sm:hidden flex justify-between px-10 my-4 relative">
