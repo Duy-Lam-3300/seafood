@@ -1,0 +1,13 @@
+.animationDetail summary::before,
+.animationDetail summary::after {
+    transition: 200ms;
+}
+
+@layer marker {
+    summary {
+        position: relative;
+    }
+}
+summary::marker {
+    content: none;
+  }
