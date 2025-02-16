@@ -4,15 +4,19 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MdDehaze, MdOutlineSearch } from "react-icons/md";
 import Input from "../shared/InputBox";
+import { useTranslations } from "next-intl";
+import LanguageSwitcher from "../shared/LanguageSwitcher";
 
 export default function Navigation() {
+    const t = useTranslations('Navigation');
+    const pathName = usePathname();
+
     const navLinkMenu = [
         { href: "/home", name: "Home" },
-        { href: "/about", name: "About" },
+        { href: "/about", name: t("About") },
         { href: "/products", name: "Products" },
         { href: "/contact", name: "Contact" },
     ];
-    const pathName = usePathname();
     return (
         <nav className="">
             <div className="hidden justify-between items-center px-10 my-4 sm:flex">
@@ -28,7 +32,8 @@ export default function Navigation() {
                         })}
                     </div>
                 </div>
-                <div className="w-fit">
+                <div className="w-fit flex gap-10">
+                    <LanguageSwitcher />
                     <Input />
                 </div>
             </div>
