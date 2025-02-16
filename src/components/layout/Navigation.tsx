@@ -12,10 +12,10 @@ export default function Navigation() {
     const pathName = usePathname();
 
     const navLinkMenu = [
-        { href: "/home", name: "Home" },
+        { href: "/home", name: t("Home") },
         { href: "/about", name: t("About") },
-        { href: "/products", name: "Products" },
-        { href: "/contact", name: "Contact" },
+        { href: "/products", name: t("Products") },
+        { href: "/contact", name: t("Contact") },
     ];
     return (
         <nav className="">
@@ -32,7 +32,7 @@ export default function Navigation() {
                         })}
                     </div>
                 </div>
-                <div className="w-fit flex gap-10">
+                <div className="w-fit flex gap-10 items-center">
                     <LanguageSwitcher />
                     <Input />
                 </div>
@@ -57,7 +57,7 @@ export default function Navigation() {
                     </div>
                 </details>
                 <div className="text-xl font-bold">Seafood</div>
-                <div>vn</div>
+                <div>    <LanguageSwitcher /></div>
 
             </div>
             <hr></hr>
