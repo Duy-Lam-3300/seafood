@@ -132,13 +132,13 @@ export default function Products() {
             Món ngon: hấp bia để tăng độ ngọt của cua mà không làm mất đi hương vị tự nhiên của món ăn.`
         },
     ]
-    return (<div className="h-full w-full ">
-        <div className="w-fit">
-            <div className="w-full grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  items-start place-items-center justify-center">
+    return (
+        <div className="w-full grid grid-cols-12 ">
+            <div className="col-span-10 col-start-2 grid 
+            grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-4 place-items-center justify-center">
                 {productsDatas?.map(pro => (
-                    <Card product={pro} className="h-fit bg-white " key={pro.id} />
+                    <Card product={pro} className="h-fit bg-white col-span-10" key={pro.id} />
                 ))}
             </div>
-        </div>
-    </div>)
+        </div>)
 }

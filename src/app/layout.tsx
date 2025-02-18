@@ -31,21 +31,17 @@ export default async function RootLayout({
   const messages = await getMessages();
   return (
     <html lang={locale}>
-      <body className={`${geistSans.variable} ${geistMono.variable} select-none  `}>
+      <body className={`${geistSans.variable} ${geistMono.variable} select-none `}>
         <NextIntlClientProvider messages={messages}>
-          <div className="flex flex-col items-center">
-            <div className="fixed z-50 h-fit bg-white w-full">
-              <div className="w-[100rem] mx-auto">
-                <Navigation />
-              </div>
-              <hr />
-            </div>
-            <div className="max-w-[100rem] mt-[5.5rem]">
-              {children}
-            </div>
-            <div className="w-[100rem]">
-              <Footer />
-            </div>
+          <div className="fixed z-50 h-fit bg-white w-full">
+            <Navigation />
+            <hr className="inset-0 col-span-12" />
+          </div>
+          <div className="w-full">
+            {children}
+          </div>
+          <div className="col-span-10 col-start-2">
+            <Footer />
           </div>
         </NextIntlClientProvider>
       </body>

@@ -6,10 +6,12 @@ import { MdDehaze, MdOutlineSearch } from "react-icons/md";
 import Input from "./SearchBox";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "./LanguageSwitcher";
+import { useState } from "react";
 
 export default function Navigation() {
     const t = useTranslations('Navigation');
     const pathName = usePathname();
+    const [isOpenAndroidMenu, openAndroidMenu] = useState(false);
 
     const navLinkMenu = [
         { href: "/home", name: t("Home") },
@@ -18,8 +20,8 @@ export default function Navigation() {
         { href: "/contact", name: t("Contact") },
     ];
     return (
-        <nav className="w-full">
-            <div className="hidden justify-between items-center px-10 md:flex h-[5.5rem]">
+        <nav className="w-full grid grid-cols-12">
+            <div className="hidden justify-between items-center xl:flex h-[5.5rem] col-span-10 col-start-2">
                 <div className="">
                     <div className="logo">
                     </div>
@@ -39,29 +41,32 @@ export default function Navigation() {
                         defaultValue="" />
                 </div>
             </div>
-            <div className="md:hidden flex justify-between px-10 my-4 relative">
-                {/* <button className="text-3xl cursor-pointer text-gray-500 hover:text-black "><MdDehaze /></button> */}
-                <details className="animationDetail">
-                    <summary className="text-3xl cursor-pointer text-gray-500 hover:text-black">
-                        <MdDehaze />
-                    </summary>
-                    <div className="absolute left-0 top-[2.9rem] w-fit bg-white shadow-md py-2 px-1 rounded-md border">
-                        <Input />
-                        {navLinkMenu.map((item) => (
-                            <Link
-                                key={item.name}
-                                href={item.href}
-                                className="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-black transition"
-                            >
-                                {item.name}
-                            </Link>
-                        ))}
-                    </div>
-                </details>
-                <div className="text-xl font-bold">Seafood</div>
-                <div>    <LanguageSwitcher /></div>
+            <div className="xl:hidden flex justify-between items-center relative h-[5.5rem] col-span-10 col-start-2">
+                <button className="text-3xl cursor-pointer text-gray-500 hover:text-black " onClick={() => openAndroidMenu((prev) => !prev)}><MdDehaze /></button>
 
+                {/* <MdDehaze /> */}
+
+
+
+                <div className="text-xl font-bold w-full text-center">Seafood</div>
+                <div className="absolute right-0">    <LanguageSwitcher /></div>
             </div>
+            {isOpenAndroidMenu && (
+                //fix h and w
+                <div className="absolute px-10 max-md:text-2xl md-top-[5.5rem] xl:hidden left-0 w-[100vw] h-[100vh] md:w-fit md:h-fit bg-white shadow-md py-2 sm:px-1 rounded-md border">
+                    <button className="text-3xl cursor-pointer text-gray-500 hover:text-black " onClick={() => openAndroidMenu((prev) => !prev)}><MdDehaze /></button>
+                    <Input className="w-full md:w-fit! max-md:py-2" />
+                    {navLinkMenu.map((item) => (
+                        <Link
+                            key={item.name}
+                            href={item.href}
+                            className="block px-4 py-4 md:py-2 text-gray-700 hover:bg-gray-200 hover:text-black transition"
+                        >
+                            {item.name}
+                        </Link>
+                    ))}
+                </div>
+            )}
         </nav>
     )
 }
