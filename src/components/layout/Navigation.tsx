@@ -18,8 +18,8 @@ export default function Navigation() {
         { href: "/contact", name: t("Contact") },
     ];
     return (
-        <nav className="">
-            <div className="hidden justify-between items-center px-10 my-4 sm:flex">
+        <nav className="w-full">
+            <div className="hidden justify-between items-center px-10 md:flex h-[5.5rem]">
                 <div className="">
                     <div className="logo">
                     </div>
@@ -39,7 +39,7 @@ export default function Navigation() {
                         defaultValue="" />
                 </div>
             </div>
-            <div className="sm:hidden flex justify-between px-10 my-4 relative">
+            <div className="md:hidden flex justify-between px-10 my-4 relative">
                 {/* <button className="text-3xl cursor-pointer text-gray-500 hover:text-black "><MdDehaze /></button> */}
                 <details className="animationDetail">
                     <summary className="text-3xl cursor-pointer text-gray-500 hover:text-black">
@@ -62,7 +62,6 @@ export default function Navigation() {
                 <div>    <LanguageSwitcher /></div>
 
             </div>
-            <hr></hr>
         </nav>
     )
 }
