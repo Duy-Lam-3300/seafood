@@ -12,7 +12,7 @@ interface Props extends React.HTMLProps<HTMLDivElement> {
 export default function Card({ product, ...rest }: Props) {
     return (
         <div {...rest} className="border border-gray-400 pb-4  shadow-md w-fit flex flex-col items-center relative cursor-pointer">
-            <img src={product.img} alt={product.enName} className=" h-72 w-72 object-cover " />
+            <img src={product.img} alt={product.enName} className=" h-fit w-72 object-cover " />
 
             <h2 className="text-lg font-bold mt-3 mb-1">{rest.locale==="en"?product.enName:product.viName}</h2>
             {/* <pre className="text-gray-600 text-wrap">{product.description}</pre> */}

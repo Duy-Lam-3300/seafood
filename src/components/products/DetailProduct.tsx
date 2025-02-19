@@ -1,4 +1,7 @@
+'use client'
 import { Product } from "@/types";
+import { useState } from "react";
+import { PiCheckBold } from "react-icons/pi";
 
 interface props extends React.HTMLProps<HTMLDivElement> {
     product: Product;
@@ -6,6 +9,7 @@ interface props extends React.HTMLProps<HTMLDivElement> {
 }
 
 export default function DetailProduct({ product, ...rest }: props) {
+    const [type, setType] = useState<number>(0);
     return (<div className="flex">
         {/* <div className="flex flex-col items-center p-4">
             <img src={product.img} alt={product.enName} className="w-72 h-72 object-cover mb-4" />
@@ -34,9 +38,24 @@ export default function DetailProduct({ product, ...rest }: props) {
                 </p>
             </div>
             <div className="flex items-center gap-4">
-                {product.size.map(pro => (<div className="border-2 border-blue-500">
-                    <p>Size: {pro.description}</p>
-                </div>))}
+                {product.size.map((pro, index) => (
+                    <div className={`border-2 ${type === index ? "border-blue-500 " : "border-gray-300 text-gray-400"} px-3 pr-4 py-1 cursor-pointer relative`} onClick={() => setType(index)}>
+                        <p><span className="font-semibold text-lg">Size:</span> {pro.description}</p>
+
+                        {type === index &&
+
+                            <>
+                                <div className="border-b-[20px] border-b-blue-500 w-fit h-fit border-l-[20px] border-l-transparent absolute bottom-0 right-0">
+                                </div>
+                                <PiCheckBold className="text-[10px] font-bold absolute bottom-[1.5px] right-[1.5px]  text-white" />
+                            </>
+                        }
+                    </div>))}
+            </div>
+            <div>
+                <div className="mt-4">
+                    <p className="whitespace-pre-line">{product.description.trim()}</p>
+                </div>
             </div>
         </div>
     </div>)

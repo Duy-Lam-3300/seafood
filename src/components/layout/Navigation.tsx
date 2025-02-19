@@ -19,6 +19,7 @@ export default function Navigation() {
         { href: "/products", name: t("Products") },
         { href: "/contact", name: t("Contact") },
     ];
+
     return (
         <nav className="w-full grid grid-cols-12">
             <div className="hidden justify-between items-center xl:flex h-[5.5rem] col-span-10 col-start-2">
@@ -41,7 +42,7 @@ export default function Navigation() {
                         defaultValue="" />
                 </div>
             </div>
-            <div className="xl:hidden flex justify-between items-center relative h-[5.5rem] col-span-10 col-start-2">
+            <div className="xl:hidden flex justify-between items-center relative h-[5.5rem] col-span-12 sm:col-span-10 px-4 sm:col-start-2">
                 <button className="text-3xl cursor-pointer z-50 text-gray-500 hover:text-black " onClick={() => openAndroidMenu((prev) => !prev)}><MdDehaze /></button>
 
                 {/* <MdDehaze /> */}
@@ -49,7 +50,8 @@ export default function Navigation() {
 
 
                 <div className="text-xl font-bold w-full text-center">Seafood</div>
-                <div className="absolute right-0">    <LanguageSwitcher /></div>
+                <div className="absolute right-4 sm:right-0">
+                    <LanguageSwitcher /></div>
             </div>
             {isOpenAndroidMenu && (
                 //fix h and w
@@ -60,6 +62,7 @@ export default function Navigation() {
                         <Link
                             key={item.name}
                             href={item.href}
+                            onClick={() => openAndroidMenu(false)}
                             className="block px-4 py-4 md:py-2 text-gray-700 hover:bg-gray-200 hover:text-black transition"
                         >
                             {item.name}
