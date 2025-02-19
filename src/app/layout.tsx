@@ -37,10 +37,10 @@ export default async function RootLayout({
             <Navigation />
             <hr className="inset-0 col-span-12" />
           </div>
-          <div className="w-full">
+          <div className="w-full mt-[5.5rem] grid grid-cols-12">
             {children}
           </div>
-          <div className="col-span-10 col-start-2">
+          <div className="">
             <Footer />
           </div>
         </NextIntlClientProvider>

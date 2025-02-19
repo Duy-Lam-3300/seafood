@@ -1,14 +1,15 @@
 "use client"
-
-import Card from "@/components/products/Card";
+import DetailProduct from "@/components/products/DetailProduct";
 import { Product } from "@/types";
 import { useLocale } from "next-intl";
-import { redirect } from "next/navigation";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react"
 
 
 
 
-export default function Products() {
+export default function DetailProductPage() {
+    const { id } = useParams();
     const productsDatas: Product[] = [
         {
             id: 1,
@@ -98,18 +99,27 @@ export default function Products() {
         },
     ];
     
-    const locale = useLocale();
+    const locale=useLocale();
+    const [product, setProduct] = useState<Product | undefined>(undefined);
 
-    const navToDetail = (id: string) => {
-        redirect("products/" + id)
+
+
+    useEffect(() => {
+        if (id) {
+            const foundProduct = productsDatas.find(item => item.id.toString() === id);
+            setProduct(foundProduct);
+        }
+    }, [id])
+
+    if (!product) {
+        return <div className="text-center text-red-500 font-bold">Product not found</div>;
     }
+
     return (
         <>
-            <div className="col-span-10 col-start-2 grid 
-            grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-4 place-items-center justify-center">
-                {productsDatas?.map(pro => (
-                    <Card product={pro} className="h-fit bg-white col-span-10" key={pro.id} locale={locale} onClick={() => navToDetail((pro.id).toString())} />
-                ))}
+            <div className="col-span-10 col-start-2">
+                <DetailProduct product={product} locale={locale}/>
             </div>
-        </>)
+        </>
+    );
 }

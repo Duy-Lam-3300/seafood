@@ -42,7 +42,7 @@ export default function Navigation() {
                 </div>
             </div>
             <div className="xl:hidden flex justify-between items-center relative h-[5.5rem] col-span-10 col-start-2">
-                <button className="text-3xl cursor-pointer text-gray-500 hover:text-black " onClick={() => openAndroidMenu((prev) => !prev)}><MdDehaze /></button>
+                <button className="text-3xl cursor-pointer z-50 text-gray-500 hover:text-black " onClick={() => openAndroidMenu((prev) => !prev)}><MdDehaze /></button>
 
                 {/* <MdDehaze /> */}
 
@@ -53,8 +53,8 @@ export default function Navigation() {
             </div>
             {isOpenAndroidMenu && (
                 //fix h and w
-                <div className="absolute px-10 max-md:text-2xl md-top-[5.5rem] xl:hidden left-0 w-[100vw] h-[100vh] md:w-fit md:h-fit bg-white shadow-md py-2 sm:px-1 rounded-md border">
-                    <button className="text-3xl cursor-pointer text-gray-500 hover:text-black " onClick={() => openAndroidMenu((prev) => !prev)}><MdDehaze /></button>
+                <div className="absolute px-14 max-md:text-2xl md-top-[5.5rem] pt-[5rem]  xl:hidden left-0 w-[100vw] h-[100vh] md:w-fit md:h-fit bg-white shadow-md py-2 rounded-md border">
+                    {/* <button className="text-3xl cursor-pointer text-gray-500 py-[2rem] hover:text-black " onClick={() => openAndroidMenu((prev) => !prev)}><MdDehaze /></button> */}
                     <Input className="w-full md:w-fit! max-md:py-2" />
                     {navLinkMenu.map((item) => (
                         <Link

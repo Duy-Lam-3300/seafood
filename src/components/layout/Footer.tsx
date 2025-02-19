@@ -23,32 +23,34 @@ export default function Footer() {
         ]
     }
     return (
-        <footer>
-            <div className="navigateMenu">
-            </div>
-            <div className="companyInfor">
-                <div className="left">
-                    <p className="name">
-                        {companyInformation.name}
-                    </p>
-                    <p className="location">
-                        {companyInformation.location}
-                    </p>
-                    <p className="phone">
-                        {companyInformation.phone}
-                    </p>
-                    <p className="email">
-                        {companyInformation.email}
-                    </p>
+        <div className="grid grid-cols-12">
+            <footer className="col-span-10 col-start-2">
+                <div className="navigateMenu">
                 </div>
-                <div className="right">
-                    <p className="copyRight">
-                        {companyInformation.copyRight}
-                    </p>
-                    <div className="linkMenu">
+                <div className="companyInfor">
+                    <div className="left">
+                        <p className="name">
+                            {companyInformation.name}
+                        </p>
+                        <p className="location">
+                            {companyInformation.location}
+                        </p>
+                        <p className="phone">
+                            {companyInformation.phone}
+                        </p>
+                        <p className="email">
+                            {companyInformation.email}
+                        </p>
+                    </div>
+                    <div className="right">
+                        <p className="copyRight">
+                            {companyInformation.copyRight}
+                        </p>
+                        <div className="linkMenu">
 
+                        </div>
                     </div>
                 </div>
-            </div>
-        </footer>)
+            </footer>
+        </div>)
 }
