@@ -3,7 +3,10 @@
 import Card from "@/components/products/Card";
 import { Product } from "@/types";
 import { useLocale } from "next-intl";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
+import { useState } from "react";
+import { HiOutlineMenu, HiOutlineViewGrid } from "react-icons/hi";
+
 
 
 
@@ -118,19 +121,144 @@ export default function Products() {
             Món ngon: Rang muối, sốt tiêu đen.`,
         },
     ];
+    const filter = [{
+        name: "Loai san pham",
+        value: [
+            {
+                name: "Oc",
+                value: "Oc"
+            },
+            {
+                name: "Cua",
+                value: "Cua"
+            },
+            {
+                name: "Tom",
+                value: "Tom"
+            },
+        ]
+    },
+    {
+        name: "Thương hiệu",
+        value: [
+            {
+                name: "Ho Chi Minh",
+                value: "Ho Chi Minh"
+            },
+            {
+                name: "Ha Noi",
+                value: "Ha Noi"
+            },
+            {
+                name: "Da Nang",
+                value: "Da Nang"
+            },
+        ]
+    }]
+    const selectOptions = [
+        {
+            name: "Giá tăng dần",
+            value: "price.true"
+        },
+        {
+            name: "Giá giảm dần",
+            value: "price.false"
+        },
+        {
+            name: "Tên tăng dần",
+            value: "name.true"
+        },
+        {
+            name: "Tên giảm dần",
+            value: "name.false"
+        },
+    ]
+
+    const [viewGrid, setViewGrid] = useState<Boolean>(true);
 
     const locale = useLocale();
+    const router = useRouter();
 
     const navToDetail = (id: string) => {
-        redirect("products/" + id)
-    }
+        router.push(`/products/${id}`);
+    };
+
+
+    const CheckBoxInput = (name: string, value: string) => (
+        <div className="flex items-center space-x-2">
+            <input type="checkbox" id={value} value={value} name={name} className="cursor-pointer" />
+            <label htmlFor={value} className="cursor-pointer">{value}</label>
+        </div>
+    );
     return (
         <>
-            <div className="col-span-12 px-4 sm:px-0 sm:col-span-10 sm:col-start-2 grid 
-            grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-4 place-items-center justify-center">
-                {productsDatas?.map(pro => (
-                    <Card product={pro} className="h-fit bg-white col-span-10" key={pro.id} locale={locale} onClick={() => navToDetail((pro.id).toString())} />
-                ))}
+            <div className="grid grid-cols-12 col-span-12 md:col-span-8 md:col-start-3   px-4 md:px-0 gap-4 mb-[5rem]">
+                <div className="col-span-12 sm:col-span-3 md:col-span-2 bg-white p-4 rounded shadow-md">
+                    <form>
+                        {filter.map((item, index) => (
+                            <div key={index}>
+                                <h3 className="font-bold text-lg mb-4">{item.name}</h3>
+                                {item.value.map((child, childIndex) => (<div key={childIndex}>
+                                    {CheckBoxInput(child.name, child.name)}
+                                </div>))}
+                            </div>
+                        ))}
+                    </form>
+                </div>
+                <div className="col-span-12 sm:col-span-9 md:col-span-10 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    <div className="col-span-full flex justify-between">
+                        <div className="flex gap-4">
+                            <button className={` border p-1 w-fit h-fit text-3xl rounded-sm cursor-pointer ${viewGrid ? "opacity-100" : "opacity-50"}`} onClick={() => setViewGrid(true)}><HiOutlineViewGrid /></button>
+                            <button className={` border p-1 w-fit h-fit text-3xl rounded-sm cursor-pointer ${viewGrid ? "opacity-50" : "opacity-100"}`} onClick={() => setViewGrid(false)}><HiOutlineMenu /></button>
+                        </div>
+                        <div className={`border-2 w-fit h-fit px-2 relative border-gray-200  rounded-sm text-gray-500 focus-within:text-black focus-within:border-black `}>
+                            <label>Sort by:</label>
+                            <select name="sort" className="outline-0 pl-1 py-1 pr-4" >
+                                {selectOptions.map((item, key) => (
+                                    <option value={item.value} key={key}>{item.name}</option>
+                                ))}
+                            </select>
+
+                        </div>
+                    </div>
+                    {productsDatas.map((pro, index) =>
+                        viewGrid ? (
+                            <Card
+                                key={index}
+                                product={pro}
+                                className="h-fit bg-white cursor-pointer"
+                                locale={locale}
+                                onClick={() => navToDetail(pro.id.toString())}
+                            />
+                        ) : (<div key={index}></div>)
+                    )}
+                    <div className="col-span-4 flex justify-center">
+                        <button className="border-1 px-4 py-2 h-fit w-fit">Load more</button>
+                    </div>
+                </div>
             </div>
         </>)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

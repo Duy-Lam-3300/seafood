@@ -39,11 +39,10 @@ export default function DetailProduct({ product, ...rest }: props) {
             </div>
             <div className="flex items-center gap-4">
                 {product.size.map((pro, index) => (
-                    <div className={`border-2 ${type === index ? "border-blue-500 " : "border-gray-300 text-gray-400"} px-3 pr-4 py-1 cursor-pointer relative`} onClick={() => setType(index)}>
+                    <div className={`border-2 ${type === index ? "border-blue-500 " : "border-gray-300 text-gray-400"} px-3 pr-4 py-1 cursor-pointer relative`} onClick={() => setType(index)} key={index}>
                         <p><span className="font-semibold text-lg">Size:</span> {pro.description}</p>
 
                         {type === index &&
-
                             <>
                                 <div className="border-b-[20px] border-b-blue-500 w-fit h-fit border-l-[20px] border-l-transparent absolute bottom-0 right-0">
                                 </div>

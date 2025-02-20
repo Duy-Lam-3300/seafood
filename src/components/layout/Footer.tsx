@@ -24,7 +24,7 @@ export default function Footer() {
     }
     return (
         <div className="grid grid-cols-12">
-            <footer className="col-span-10 col-start-2">
+            <footer className="col-span-8 col-start-3">
                 <div className="navigateMenu">
                 </div>
                 <div className="companyInfor">

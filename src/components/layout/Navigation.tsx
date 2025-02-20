@@ -22,7 +22,7 @@ export default function Navigation() {
 
     return (
         <nav className="w-full grid grid-cols-12">
-            <div className="hidden justify-between items-center xl:flex h-[5.5rem] col-span-10 col-start-2">
+            <div className="hidden justify-between items-center xl:flex h-[5.5rem] col-span-8 col-start-3">
                 <div className="">
                     <div className="logo">
                     </div>
