@@ -2,7 +2,7 @@
 
 import Card, { CardDetail } from "@/components/products/Card";
 import { Product } from "@/types";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { redirect, useRouter } from "next/navigation";
 import { useState } from "react";
 import { HiOutlineMenu, HiOutlineViewGrid } from "react-icons/hi";
@@ -12,6 +12,10 @@ import { HiOutlineMenu, HiOutlineViewGrid } from "react-icons/hi";
 
 
 export default function Products() {
+    const t = useTranslations("Product");
+    const locale = useLocale();
+    const router = useRouter();
+
     const productsDatas: Product[] = [
         {
             id: 1,
@@ -128,63 +132,64 @@ Dinh dưỡng: Chứa nhiều canxi, tốt cho xương khớp.
 Món ngon: Rang muối, sốt tiêu đen.`,
         },
     ];
-    const filter = [{
-        name: "Loai san pham",
-        value: [
-            {
-                name: "Oc",
-                value: "Oc"
-            },
-            {
-                name: "Cua",
-                value: "Cua"
-            },
-            {
-                name: "Tom",
-                value: "Tom"
-            },
-        ]
-    },
-    {
-        name: "Thương hiệu",
-        value: [
-            {
-                name: "Ho Chi Minh",
-                value: "Ho Chi Minh"
-            },
-            {
-                name: "Ha Noi",
-                value: "Ha Noi"
-            },
-            {
-                name: "Da Nang",
-                value: "Da Nang"
-            },
-        ]
-    }]
+    const filter = [
+        {
+            name: t("Product Type"),
+            value: [
+                {
+                    name: t("Snail"),
+                    value: "Oc"
+                },
+                {
+                    name: t("Crab"),
+                    value: "Cua"
+                },
+                {
+                    name: t("Shrimp"),
+                    value: "Tom"
+                },
+            ]
+        },
+        {
+            name: "Thương hiệu",
+            value: [
+                {
+                    name: "Ho Chi Minh",
+                    value: "Ho Chi Minh"
+                },
+                {
+                    name: "Ha Noi",
+                    value: "Ha Noi"
+                },
+                {
+                    name: "Da Nang",
+                    value: "Da Nang"
+                },
+            ]
+        }]
     const selectOptions = [
         {
-            name: "Giá tăng dần",
+            name: t("Price Ascending"),
             value: "price.true"
         },
         {
-            name: "Giá giảm dần",
+            name: t("Price Descending"),
             value: "price.false"
         },
         {
-            name: "Tên tăng dần",
+            name: t("Name Ascending"),
             value: "name.true"
         },
         {
-            name: "Tên giảm dần",
+            name: t("Name Descending"),
             value: "name.false"
         },
-    ]
+    ];
+
 
     const [viewGrid, setViewGrid] = useState<Boolean>(true);
 
-    const locale = useLocale();
-    const router = useRouter();
+
 
     const navToDetail = (id: string) => {
         router.push(`/products/${id}`);
@@ -202,7 +207,7 @@ Món ngon: Rang muối, sốt tiêu đen.`,
         <>
             <div className="grid grid-cols-12 col-span-12 md:col-span-8 md:col-start-3   px-4 md:px-0 gap-4 mb-[5rem]">
                 <form className="col-span-12 sm:col-span-3 md:col-span-2 ">
-                    <div className="text-center text-xl font-bold bg-blue-300 py-2 my-4">Loc san pham</div>
+                    <div className="text-center text-xl font-bold bg-blue-300 py-2 my-4">{t("Filter")}</div>
                     <div className=" gap-y-6 flex flex-col">
                         {filter.map((item, index) => (
                             <div key={index} className="bg-gray-200 p-4">
@@ -217,14 +222,14 @@ Món ngon: Rang muối, sốt tiêu đen.`,
                     </div>
                 </form>
                 <div className="col-span-12 sm:col-span-9 md:col-span-10 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                    <div className="col-span-full text-2xl font-semibold pt-4">Tất cả sản phẩm</div>
+                    <div className="col-span-full text-2xl font-semibold pt-4">{t("All products")}</div>
                     <div className="col-span-full flex justify-between">
                         <div className="flex gap-4">
                             <button className={` border p-1 w-fit h-fit text-3xl rounded-sm cursor-pointer ${viewGrid ? "opacity-100" : "opacity-50"}`} onClick={() => setViewGrid(true)}><HiOutlineViewGrid /></button>
                             <button className={` border p-1 w-fit h-fit text-3xl rounded-sm cursor-pointer ${viewGrid ? "opacity-50" : "opacity-100"}`} onClick={() => setViewGrid(false)}><HiOutlineMenu /></button>
                         </div>
                         <div className={`border-2 w-fit h-fit px-2 relative border-gray-200  rounded-sm text-gray-500 focus-within:text-black focus-within:border-black `}>
-                            <label htmlFor="sortBy">Sort by:</label>
+                            <label htmlFor="sortBy">{t("Sort by")}:</label>
                             <select name="sort" id="sortBy" className="outline-0 px-1 py-1" >
                                 {selectOptions.map((item, key) => (
                                     <option value={item.value} key={key}>{item.name}</option>
