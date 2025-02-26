@@ -1,3 +1,4 @@
+import ContactButtonList from "../shared/ContactButton"
 
 
 
@@ -27,7 +28,7 @@ export default function Footer() {
             <footer className="col-span-8 col-start-3">
                 <div className="navigateMenu">
                 </div>
-                <div className="companyInfor">
+                <div className="companyInfor flex justify-between items-start">
                     <div className="left">
                         <p className="name">
                             {companyInformation.name}
@@ -47,6 +48,7 @@ export default function Footer() {
                             {companyInformation.copyRight}
                         </p>
                         <div className="linkMenu">
+                            <ContactButtonList />
 
                         </div>
                     </div>

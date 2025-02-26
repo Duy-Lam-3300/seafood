@@ -14,7 +14,7 @@ export default function Navigation() {
     const [isOpenAndroidMenu, openAndroidMenu] = useState(false);
 
     const navLinkMenu = [
-        { href: "/home", name: t("Home") },
+        { href: "/", name: t("Home") },
         { href: "/about", name: t("About") },
         { href: "/products", name: t("Products") },
         { href: "/contact", name: t("Contact") },
